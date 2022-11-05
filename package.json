@@ -1,7 +1,7 @@
 {
     "name": "create-hue-application-keys",
     "description": "Create the values required for the \"hue-application-key\" header in Hue Bridge API requests",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "dependencies": {},
     "node-red": {
         "settings": {
