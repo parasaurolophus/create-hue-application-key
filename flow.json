@@ -1,0 +1,481 @@
+[
+    {
+        "id": "caa65b1dec46be0f",
+        "type": "tab",
+        "label": "Create Hue Keys",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5771a7cc00653531",
+        "type": "subflow",
+        "name": "Create Hue Application Key",
+        "info": "Invoke the Philips Hue Bridge API entry point to generate a client\napplication key required as a security token by most of the other API\nentry points.\n\n- The environment variable named `ADDRESS` must be set to the bridge's\n  host name or IP address for each instance of this subflow.\n\n- This subflow must be invoked within 30 seconds of pressing the large\n  button on top of the bridge.\n\nIf successful, the generated client application key will be shown as\nthe `username` property inside a JSON object in the debug pane.\n\n```\n[\n    {\n        \"success\": {\n            \"username\": <hue application key>,\n            \"clientkey\": <ignore this>\n        }\n    }\n]\n```\n\nThe `username` string must be used as the value of the\n`hue-application-key` header in subsequent HTTP requests sent to the\nAPI on the given Hue bridge. You will need to perform this on each\nHue bridge.\n\nSee <https://developers.meethue.com/develop/hue-api-v2/getting-started/>\nfor details.",
+        "category": "hue",
+        "in": [
+            {
+                "x": 60,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "7316ae1eef4c6295"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 440,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "e4718ecfdb248cc7",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "ADDRESS",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "USERNAME",
+                "type": "str",
+                "value": ""
+            }
+        ],
+        "meta": {
+            "module": "@parasaurolophus/node-red-create-hue-application-key",
+            "type": "create-hue-application-key",
+            "version": "1.0.0",
+            "author": "parasaurolophus <apps@rader.us>",
+            "desc": "Invoke the Philips Hue Bridge API to generate an application access token",
+            "keywords": "node-red,philips-hue,hue",
+            "license": "MIT"
+        },
+        "color": "#D8BFD8",
+        "icon": "node-red/bridge.svg",
+        "status": {
+            "x": 440,
+            "y": 260,
+            "wires": [
+                {
+                    "id": "64ad1b43047cb836",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "edaa5f198942f2db",
+        "type": "group",
+        "z": "caa65b1dec46be0f",
+        "name": "create basement hue client application key",
+        "style": {
+            "stroke": "none",
+            "fill": "#000000",
+            "fill-opacity": "0.1",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "6406c2625e27e6fd",
+            "031cb39fd3376acb",
+            "934e930610244b5d",
+            "63af54b325e8cfdf",
+            "5036029eb19db7fe",
+            "8ead5a97fa61647b"
+        ],
+        "x": 14,
+        "y": 339,
+        "w": 752,
+        "h": 202
+    },
+    {
+        "id": "edd3a11532a45845",
+        "type": "group",
+        "z": "caa65b1dec46be0f",
+        "name": "create ground floor hue client application key",
+        "style": {
+            "stroke": "none",
+            "fill": "#000000",
+            "fill-opacity": "0.1",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "41801805d73755a8",
+            "68645e57f123e9e7",
+            "cc8620319b3cb3e1",
+            "adc1eaf802321b6f",
+            "7fba19c73f3cb7db",
+            "ad0ff8360b625104"
+        ],
+        "x": 14,
+        "y": 119,
+        "w": 752,
+        "h": 202
+    },
+    {
+        "id": "6d6be113700e010c",
+        "type": "group",
+        "z": "caa65b1dec46be0f",
+        "name": "",
+        "style": {
+            "stroke": "none",
+            "fill": "#000000",
+            "fill-opacity": "0.1",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "1dd56d79aa4febab"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 532,
+        "h": 82
+    },
+    {
+        "id": "e17485e13c7ed6d7",
+        "type": "tls-config",
+        "z": "5771a7cc00653531",
+        "name": "Ignore Certificate",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "e4718ecfdb248cc7",
+        "type": "http request",
+        "z": "5771a7cc00653531",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "e17485e13c7ed6d7",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 330,
+        "y": 180,
+        "wires": [
+            []
+        ],
+        "info": "Send a HTTP `POST` request using TLS but without certificate validation\ndue to defects in the Hue Bridge API."
+    },
+    {
+        "id": "7316ae1eef4c6295",
+        "type": "change",
+        "z": "5771a7cc00653531",
+        "name": "request key",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"devicetype\":$env('USERNAME'),\"generateclientkey\":true}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "'https://' & $env('ADDRESS') & '/api'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "e4718ecfdb248cc7"
+            ]
+        ],
+        "info": "Set `msg.url` and `msg.payload` to use as the parameters in a command to\nregister a user name with a Hue Bridge.\n\nSee\n<https://developers.meethue.com/develop/hue-api-v2/getting-started/>\nfor more information."
+    },
+    {
+        "id": "64ad1b43047cb836",
+        "type": "status",
+        "z": "5771a7cc00653531",
+        "name": "http request",
+        "scope": [
+            "e4718ecfdb248cc7"
+        ],
+        "x": 330,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7459d84834917543",
+        "type": "comment",
+        "z": "5771a7cc00653531",
+        "name": "https://developers.meethue.com/develop/hue-api-v2/getting-started/",
+        "info": "",
+        "x": 280,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "4c69cbe799cb4021",
+        "type": "comment",
+        "z": "5771a7cc00653531",
+        "name": "invoke this subflow within 30 seconds of pressing the security button on top of the hue bridge",
+        "info": "",
+        "x": 360,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "41801805d73755a8",
+        "type": "inject",
+        "z": "caa65b1dec46be0f",
+        "g": "edd3a11532a45845",
+        "name": "create key",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "68645e57f123e9e7"
+            ]
+        ],
+        "info": "Click this within 30 seconds of pressing the large button on top of\nthe _Ground Floor_ Hue bridge."
+    },
+    {
+        "id": "68645e57f123e9e7",
+        "type": "subflow:5771a7cc00653531",
+        "z": "caa65b1dec46be0f",
+        "g": "edd3a11532a45845",
+        "name": "Create Ground Floor Key",
+        "env": [
+            {
+                "name": "ADDRESS",
+                "value": "GROUND_FLOOR_HUE_ADDRESS",
+                "type": "env"
+            },
+            {
+                "name": "USERNAME",
+                "value": "cheznous#nodered",
+                "type": "str"
+            }
+        ],
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "cc8620319b3cb3e1"
+            ]
+        ],
+        "info": "Send a command to the _Ground Floor_ Hue bridge to register a user name."
+    },
+    {
+        "id": "cc8620319b3cb3e1",
+        "type": "debug",
+        "z": "caa65b1dec46be0f",
+        "g": "edd3a11532a45845",
+        "name": "ground floor key",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "counter",
+        "x": 520,
+        "y": 280,
+        "wires": [],
+        "info": "Display the response from the _Ground Floor_ Hue bridge.\n\nIf successful, this will include the client application key required by\nother flows in this project as the value of the\n`${GROUND_FLOOR_HUE_KEY}` environment variable.\n\nSee\n<https://developers.meethue.com/develop/hue-api-v2/getting-started/>\nfor more information."
+    },
+    {
+        "id": "6406c2625e27e6fd",
+        "type": "inject",
+        "z": "caa65b1dec46be0f",
+        "g": "edaa5f198942f2db",
+        "name": "create key",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 500,
+        "wires": [
+            [
+                "031cb39fd3376acb"
+            ]
+        ],
+        "info": "Click this within 30 seconds of pressing the large button on top of\nthe _Basement_ Hue bridge."
+    },
+    {
+        "id": "031cb39fd3376acb",
+        "type": "subflow:5771a7cc00653531",
+        "z": "caa65b1dec46be0f",
+        "g": "edaa5f198942f2db",
+        "name": "Create Basement Key",
+        "env": [
+            {
+                "name": "ADDRESS",
+                "value": "BASEMENT_HUE_ADDRESS",
+                "type": "env"
+            },
+            {
+                "name": "USERNAME",
+                "value": "cheznous#nodered",
+                "type": "str"
+            }
+        ],
+        "x": 300,
+        "y": 500,
+        "wires": [
+            [
+                "934e930610244b5d"
+            ]
+        ],
+        "info": "Send a command to the _Basement_ Hue bridge to register a user name."
+    },
+    {
+        "id": "934e930610244b5d",
+        "type": "debug",
+        "z": "caa65b1dec46be0f",
+        "g": "edaa5f198942f2db",
+        "name": "basement key",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "counter",
+        "x": 500,
+        "y": 500,
+        "wires": [],
+        "info": "Display the response from the _Basement_ Hue bridge.\n\nIf successful, this will include the client application key required by\nother flows in this project as the value of the\n`${BASEMENT_HUE_KEY}` environment variable.\n\nSee\n<https://developers.meethue.com/develop/hue-api-v2/getting-started/>\nfor more information."
+    },
+    {
+        "id": "63af54b325e8cfdf",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "edaa5f198942f2db",
+        "name": "assumes ${BASEMENT_HUE_ADDRESS} is defined",
+        "info": "",
+        "x": 240,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "adc1eaf802321b6f",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "edd3a11532a45845",
+        "name": "assumes ${GROUND_FLOOR_HUE_ADDRESS} is defined",
+        "info": "",
+        "x": 260,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1dd56d79aa4febab",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "6d6be113700e010c",
+        "name": "https://developers.meethue.com/develop/hue-api-v2/getting-started/",
+        "info": "",
+        "x": 280,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5036029eb19db7fe",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "edaa5f198942f2db",
+        "name": "click inject node within 30 seconds of pressing the big button on top of the basement hue bridge",
+        "info": "",
+        "x": 370,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "7fba19c73f3cb7db",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "edd3a11532a45845",
+        "name": "click inject node within 30 seconds of pressing the big button on top of the ground floor hue bridge",
+        "info": "",
+        "x": 370,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8ead5a97fa61647b",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "edaa5f198942f2db",
+        "name": "if successful, the value to use as the client application key will appear as \"username\" in the debug pane",
+        "info": "",
+        "x": 390,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ad0ff8360b625104",
+        "type": "comment",
+        "z": "caa65b1dec46be0f",
+        "g": "edd3a11532a45845",
+        "name": "if successful, the value to use as the client application key will appear as \"username\" in the debug pane",
+        "info": "",
+        "x": 390,
+        "y": 240,
+        "wires": []
+    }
+]

@@ -1,0 +1,12 @@
+{
+    "name": "create-hue-application-keys",
+    "description": "Create the values required for the \"hue-application-key\" header in Hue Bridge API requests",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flow.json",
+            "credentialsFile": "flow_cred.json"
+        }
+    }
+}
