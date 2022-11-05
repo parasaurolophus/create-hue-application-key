@@ -77,10 +77,10 @@
         "name": "create basement hue client application key",
         "style": {
             "stroke": "none",
-            "fill": "#000000",
+            "fill": "#ffffff",
             "fill-opacity": "0.1",
             "label": true,
-            "color": "#000000"
+            "color": "#ffffff"
         },
         "nodes": [
             "6406c2625e27e6fd",
@@ -102,10 +102,10 @@
         "name": "create ground floor hue client application key",
         "style": {
             "stroke": "none",
-            "fill": "#000000",
+            "fill": "#ffffff",
             "fill-opacity": "0.1",
             "label": true,
-            "color": "#000000"
+            "color": "#ffffff"
         },
         "nodes": [
             "41801805d73755a8",
@@ -127,10 +127,10 @@
         "name": "",
         "style": {
             "stroke": "none",
-            "fill": "#000000",
+            "fill": "#ffffff",
             "fill-opacity": "0.1",
             "label": true,
-            "color": "#000000"
+            "color": "#ffffff"
         },
         "nodes": [
             "1dd56d79aa4febab"
